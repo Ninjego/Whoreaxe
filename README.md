@@ -6,7 +6,6 @@
 Whoreaxe is a Minecraft mod for utilization by Ninjego
 
 ##Credits
-
 Fabric Team for Fabric
 
 ## License
