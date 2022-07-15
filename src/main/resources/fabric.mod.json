@@ -14,15 +14,12 @@
   },
 
   "license": "MIT License",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/whoreaxe/whoreaxeicon.png",
 
-  "environment": "*",
+  "environment": "client",
   "entrypoints": {
-    "main": [
-      "me.ninjego.whoreaxe.WhoreAxe"
-    ],
     "client": [
-      "me.ninjego.whoreaxe.WhoreAxeClient"
+      "me.ninjego.whoreaxe.WhoreAxe"
     ]
   },
   "mixins": [
