@@ -3,6 +3,7 @@ package me.ninjego.whoreaxe.mixin;
 import com.mojang.authlib.GameProfile;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.ninjego.whoreaxe.WhoreAxe;
+import me.ninjego.whoreaxe.utils.MessageUtil;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
@@ -24,11 +25,11 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     @Inject(method = "sendChatMessage(Ljava/lang/String;Lnet/minecraft/text/Text;)V", at = @At("HEAD"), cancellable = true)
     private void onSendChatMessage(String message, Text preview, CallbackInfo info) {
         if (message.startsWith(">")) {
-            try {
-                WhoreAxe.getInstance().getCommandManager().dispatch(message.substring(1));
-            } catch(CommandSyntaxException e) {
 
+            if(WhoreAxe.getInstance().getManagerProcessor().getCommandManager().dispatch(message.substring(1).split(" ")[0])) {
+                MessageUtil.info("\2477Couldn't find \2475'" + message.substring(1) + "'\2477 as a command!");
             }
+
             info.cancel();
         }
     }

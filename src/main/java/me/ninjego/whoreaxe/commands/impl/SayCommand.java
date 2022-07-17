@@ -8,6 +8,10 @@ import net.minecraft.command.CommandSource;
 import net.minecraft.network.message.MessageSignature;
 import net.minecraft.network.packet.c2s.play.ChatMessageC2SPacket;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.stream.Stream;
+
 import static com.mojang.brigadier.Command.SINGLE_SUCCESS;
 
 public class SayCommand extends Command {

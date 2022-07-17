@@ -1,10 +1,14 @@
-package me.ninjego.whoreaxe.commands;
+package me.ninjego.whoreaxe.managers.impl;
 
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import me.ninjego.whoreaxe.commands.Command;
+import me.ninjego.whoreaxe.commands.impl.PhaseCommand;
 import me.ninjego.whoreaxe.commands.impl.SayCommand;
+import me.ninjego.whoreaxe.commands.impl.VClipCommand;
+import me.ninjego.whoreaxe.managers.Manager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;
 import net.minecraft.command.CommandSource;
@@ -14,17 +18,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static me.ninjego.whoreaxe.commands.Command.mc;
+public class CommandManager extends Manager {
 
-public class CommandManager {
+    protected static MinecraftClient mc = MinecraftClient.getInstance();
 
     private final CommandDispatcher<CommandSource> DISPATCHER = new CommandDispatcher<>();
     private final CommandSource COMMAND_SOURCE = new ChatCommandSource(mc);
     private final List<Command> commandList = new ArrayList<>();
     private final Map<Class<? extends Command>, Command> commandInstances = new HashMap<>();
 
-    public void initCommands() {
+    @Override
+    public void init() {
         addCommand(new SayCommand());
+        addCommand(new PhaseCommand());
+        addCommand(new VClipCommand());
     }
 
     public void addCommand(Command command) {
@@ -33,13 +40,18 @@ public class CommandManager {
         commandInstances.put(command.getClass(), command);
     }
 
-    public void dispatch(String message) throws CommandSyntaxException {
-        dispatch(message, new ChatCommandSource(mc));
+    public boolean dispatch(String message){
+        return dispatch(message, new ChatCommandSource(mc));
     }
 
-    public void dispatch(String message, CommandSource source) throws CommandSyntaxException {
-        ParseResults<CommandSource> results = DISPATCHER.parse(message, source);
-        DISPATCHER.execute(results);
+    public boolean dispatch(String message, CommandSource source) {
+        try {
+            ParseResults<CommandSource> results = DISPATCHER.parse(message.toLowerCase(), source);
+            DISPATCHER.execute(results);
+            return false;
+        } catch (CommandSyntaxException e) {
+            return true;
+        }
     }
 
     private final static class ChatCommandSource extends ClientCommandSource {

@@ -7,9 +7,7 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.command.CommandSource;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public abstract class Command {
 
