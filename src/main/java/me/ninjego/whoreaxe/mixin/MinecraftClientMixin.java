@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = MinecraftClient.class, priority =  1001)
-public class MinecraftClientMixin {
+@Mixin(value = MinecraftClient.class, priority = 1001)
+public abstract class MinecraftClientMixin {
 
     @Inject(at = @At("HEAD"), method = "tick")
     private void onPreTick(CallbackInfo info) {

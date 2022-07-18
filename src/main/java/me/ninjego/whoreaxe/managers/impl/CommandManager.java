@@ -5,9 +5,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.ParseResults;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import me.ninjego.whoreaxe.commands.Command;
-import me.ninjego.whoreaxe.commands.impl.PhaseCommand;
-import me.ninjego.whoreaxe.commands.impl.SayCommand;
-import me.ninjego.whoreaxe.commands.impl.VClipCommand;
+import me.ninjego.whoreaxe.commands.impl.*;
 import me.ninjego.whoreaxe.managers.Manager;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientCommandSource;
@@ -32,6 +30,8 @@ public class CommandManager extends Manager {
         addCommand(new SayCommand());
         addCommand(new PhaseCommand());
         addCommand(new VClipCommand());
+        addCommand(new ServerSpooferCommand());
+        addCommand(new ESPCommand());
     }
 
     public void addCommand(Command command) {

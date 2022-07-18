@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
-public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
+public abstract class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
 
     public ClientPlayerEntityMixin(ClientWorld world, GameProfile profile, @Nullable PlayerPublicKey publicKey) {
         super(world, profile, publicKey);
@@ -26,7 +26,7 @@ public class ClientPlayerEntityMixin extends AbstractClientPlayerEntity {
     private void onSendChatMessage(String message, Text preview, CallbackInfo info) {
         if (message.startsWith(">")) {
 
-            if(WhoreAxe.getInstance().getManagerProcessor().getCommandManager().dispatch(message.substring(1).split(" ")[0])) {
+            if(WhoreAxe.getInstance().getManagerProcessor().getCommandManager().dispatch(message.substring(1))) {
                 MessageUtil.info("\2477Couldn't find \2475'" + message.substring(1) + "'\2477 as a command!");
             }
 

@@ -26,7 +26,7 @@ public class SayCommand extends Command {
 
             String msg = context.getArgument("message", String.class);
 
-            if(msg != null) {
+            if (msg != null) {
                 mc.player.sendChatMessage(msg);
             }
 

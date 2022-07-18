@@ -7,7 +7,12 @@
   ],
   "client": [
     "MinecraftClientMixin",
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+    "CustomPayloadC2SPacketAccessor",
+    "CapabilityTrackerMixin",
+    "BufferRendererAccessor",
+    "GameRendererMixin",
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

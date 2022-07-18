@@ -1,7 +1,9 @@
 package me.ninjego.whoreaxe.managers.impl;
 
 import me.ninjego.whoreaxe.features.Feature;
+import me.ninjego.whoreaxe.features.impl.ESP;
 import me.ninjego.whoreaxe.features.impl.Phase;
+import me.ninjego.whoreaxe.features.impl.ServerSpoofer;
 import me.ninjego.whoreaxe.managers.Manager;
 
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class FeatureManager extends Manager {
     @Override
     public void init() {
         featureList.add(new Phase());
+        featureList.add(new ServerSpoofer());
+        featureList.add(new ESP());
     }
 
     public List<Feature> getFeatureList() {

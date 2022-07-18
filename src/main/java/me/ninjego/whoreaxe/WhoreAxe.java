@@ -5,6 +5,7 @@ import me.ninjego.whoreaxe.managers.ManagerProcessor;
 import me.ninjego.whoreaxe.managers.impl.CommandManager;
 import me.ninjego.whoreaxe.events.Event;
 import net.fabricmc.api.ClientModInitializer;
+import net.minecraft.client.MinecraftClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,6 +17,7 @@ public class WhoreAxe implements ClientModInitializer {
 	private static WhoreAxe instance;
 	private ManagerProcessor managerProcessor;
 
+	public static MinecraftClient mc;
 	public static WhoreAxe getInstance() {
 		return instance;
 	}
@@ -33,6 +35,7 @@ public class WhoreAxe implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		instance = this;
+		mc = MinecraftClient.getInstance();
 
 		managerProcessor = new ManagerProcessor();
 		managerProcessor.init();
